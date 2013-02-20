@@ -17,7 +17,7 @@ import java.util.Iterator;
  */
 public class CSVContactWriter implements ContactWriter {
 	/**
-	 * The separator used to separate values of an entry
+	 * The separator used to separate values of an entry. Should be a singe character
 	 */
 	public static final String SEPARATOR = ";";
 	public static final String LINE_BREAK = "\n";
@@ -46,7 +46,7 @@ public class CSVContactWriter implements ContactWriter {
 	}
 
 	private String getValueOrBlank(String value) {
-		return value != null ? value : "";
+		return value != null ? value.replace(SEPARATOR, "\\" + SEPARATOR) : ""; // Escape the separator if it appears in the string 
 	}
 
 	@Override
